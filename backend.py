@@ -1,5 +1,7 @@
 from fastapi import FastAPI, HTTPException, File, Response
 from models import NewsRequest
+from news_scrapper import NewsScraper
+from dotenv import load_dotenv
 
 app = FastAPI()
 load_dotenv()
@@ -13,7 +15,8 @@ async def generate_news_audio(request: NewsRequest):
         #Scrape data
         if request.source_type in ["news", "both"]:
             #scrape news
-            results["news"] = {"news_scraped": "This is from google news"}
+            news_scraper = NewsScraper()
+            results["news"] = await news_scraper.scrape_news(request.topics)
 
         if request.source_type in ["reddit", "both"]:
             #scrape reddit
