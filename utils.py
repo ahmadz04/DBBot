@@ -102,10 +102,10 @@ Remember: Your only output should be a clean script that is ready to be read out
 
     try:
         llm = ChatOpenAI(
-            model="gpt-4o-mini", 
+            model="gpt-3.5-turbo", 
             api_key=api_key,
             temperature=0.4,
-            max_tokens=1000
+            max_tokens=128
         )
 
         # Invoke Claude with system + user prompt
@@ -172,10 +172,10 @@ def generate_broadcast_news(api_key, news_data, reddit_data, topics):
         )
 
         llm = ChatOpenAI(
-            model="gpt-4o-mini",
+            model="gpt-3.5-turbo",
             api_key=api_key,
             temperature=0.3,
-            max_tokens=4000,
+            max_tokens=128,
         )
 
         response = llm.invoke([
